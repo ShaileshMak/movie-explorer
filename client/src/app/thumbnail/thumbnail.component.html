@@ -1,0 +1,6 @@
+<div *ngIf="url" class="thumbnail p-sm-2">
+    <a [routerLink]="['/movieDetail', movie.movieId || movie.id]" class="thumbnail-link p-sm-2" >
+        <img [src]="url" class="rounded card-img-top" [alt]="movie.title"><br>
+    </a>
+    <a *ngIf="showFavButton" role="button" (click)="toggleFavorite($event)" class="fav-link"><i class="text-right d-block sticky-top fa fa-gratipay fa-2x" [ngClass]="isFavorite ? 'text-danger' : ''" aria-hidden="true"> </i> </a>
+</div>

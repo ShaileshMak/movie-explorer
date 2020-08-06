@@ -1,0 +1,71 @@
+<div *ngIf="movie" class="detail-container">
+    <h3 class="card-title p-sm-2 text-center font-weight-normal">{{ movie.original_title }}</h3>
+    <h5 class="p-sm-2 text-center font-weight-light">{{movie.tagline}}</h5><br>
+    <button class="btn btn-link float-right" (click)="closeDetails($event)">X</button>
+    <div class="row mb-5">
+        <div class="col-sm-8">
+            <h3 class="font-weight-normal">More information</h3><br>
+            <div class="row">
+                <div class="col-6">
+                    <span class="title">Release date:</span><br>
+                    <span class="option">{{movie.release_date}}</span>
+                </div>
+                <div class="col-6">
+                    <span class="title">Running Time:</span><br>
+                    <span class="option">{{movie.runtime}} minutes</span>
+                    <br><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col description">
+                    {{movie.overview}}<br><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">Ratting:</div>
+                <div class="col-9">{{movie.vote_average}}</div><br><br>
+            </div>
+            <div class="row">
+                <div class="col-3">Original title:</div>
+                <div class="col-9">{{movie.original_title}}</div><br><br>
+            </div>
+            <div class="row">
+                <div class="col-3">Genre:</div>
+                <div class="col-9">
+                    <a *ngFor="let genre of movieGenre" class="pr-3 float-left" href="movies/{{genre.id}}/1">{{genre.name}}</a>
+                </div><br><br>
+            </div>
+            <div class="row">
+                <div class="col-3">Revenue:</div>
+                <div class="col-9">{{movie.revenue | currency}}</div><br><br>
+            </div>
+            <div *ngIf="certification" class="row">
+                <div class="col-3">Certification:</div>
+                <div class="col-9"><img [src]="certificationUrl" class="certification-img"></div><br>
+            </div>
+        </div>
+        <div *ngIf="url" class="col-sm-4 float-right text-right"><img [src]="url" class="" [alt]="movie.original_title"></div>
+    </div>
+    <div *ngIf="movieVideos.length > 0" class="cast-container pt-5 row">
+        <div class="col-12">
+            <app-youtube-player [videoId]="currentVideoID"></app-youtube-player>
+        </div>
+    </div>
+    <div *ngIf="movieVideos.length > 1" class="pt-1 row">
+        <div class="col-12">
+            <div class="video-counter-container"><div *ngFor="let movieVideo of movieVideos; let i=index" (click)=changeVideo(i) class="pr-3 d-inline-block" [ngClass]="currentVideoIndex == i ? 'video-counter-active' : 'video-counter'"></div></div>
+        </div>
+    </div>
+    <div class="cast-container mt-5 mr-3 pt-3">
+        <app-movie-cast *ngFor="let cast of movieCasts | slice:0:5; let i=index" [cast]="cast"></app-movie-cast>
+    </div>
+    <div *ngIf="movieCasts.length > 5" class="mt-1 ml-3 float-left">
+        <div>
+            <div *ngFor="let cast of movieCasts | slice:5:movieCasts.length; let i=index" class="d-inline-block">
+                <a [routerLink]="['/movies/byCast', cast.id, cast.name, 1]" role="button" class="btn btn-light mr-2 mb-1">
+                    {{cast.name}}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

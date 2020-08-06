@@ -1,0 +1,21 @@
+.thumbnail {
+    float: left;
+    width: 15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0 10px;
+    text-overflow: ellipsis;
+}
+.thumbnail img {
+    max-width:15rem;
+    height:auto;
+}
+.thumbnail-link {
+    font-size: 0.75rem;
+    word-wrap: initial;
+}
+.title {
+    margin: 0.75rem;
+    padding:0.25rem 0;
+    text-align: center;
+}

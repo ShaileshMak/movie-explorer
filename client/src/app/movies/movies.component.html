@@ -1,0 +1,53 @@
+<div>
+<div *ngIf="isGenresType || isCertificationType ||isYearType || isByCast || isSearchMovie || isFavoriteMovie; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+    <div class="p-4">
+        <h4>{{moviesTitle}}</h4>
+        <div class="float-flush">
+          <div *ngFor="let movie of movies" class="float-left">
+            <app-thumbnail [movie] = "movie"></app-thumbnail>
+          </div>
+        </div>  
+    </div>
+    <div *ngIf="currentPage != totalPages && !isFavoriteMovie" class="paggination-container pt-4 mb-4">
+      <button class="btn btn-primary mr-3"(click)="previousPage()" [disabled]="currentPage == 1"><</button>
+      <span> {{ currentPage }} of {{totalPages}}</span>
+      <button class="btn btn-primary ml-3" (click)="nextPage()" [disabled]="currentPage == totalPages">></button>
+    </div>
+</ng-template>
+<ng-template #elseBlock>
+    <div class="p-4">
+        <h4>Now Playing Movies</h4>
+        <div class="wrapper">
+          <div *ngFor="let movie of now_playingMovies" class="movie">
+            <app-thumbnail [movie] = "movie"></app-thumbnail>
+          </div>
+        </div>  
+    </div>
+    <div class="p-4">
+        <h4>Up coming Movies</h4>
+        <div class="wrapper">
+          <div *ngFor="let movie of upcomingMovies" class="movie">
+            <app-thumbnail [movie] = "movie"></app-thumbnail>
+          </div>
+        </div>  
+    </div>
+    <div class="p-4">
+        <h4>Popular Movies</h4>
+        <div class="wrapper">
+          <div *ngFor="let movie of popularMovies" class="movie">
+            <app-thumbnail [movie] = "movie"></app-thumbnail>
+          </div>
+        </div>  
+    </div>
+    
+    <div class="p-4">
+        <h4>Top Rated Movies</h4>
+        <div class="wrapper">
+          <div *ngFor="let movie of top_ratedMovies" class="movie">
+            <app-thumbnail [movie] = "movie"></app-thumbnail>
+          </div>
+        </div>  
+    </div>
+</ng-template>
+</div>

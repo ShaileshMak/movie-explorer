@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Movie explorer</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Genres...
+          </a>
+          <ul class="dropdown-menu genre-container" role="menu" aria-labelledby="navbarDropdown">
+              <li *ngFor="let genre of genresList" class="genere-item"><a tabindex="-1" class="dropdown-item" href="movies/{{genre.id}}/1">{{genre.name}}</a></li>
+          </ul>
+        </li>
+        <!--<li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarRatingDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Certification
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="navbarDropdown">
+                <li *ngFor="let certification of certifications" ><a tabindex="-1" class="dropdown-item" href="movies/certification/{{certification.rate}}/1">{{certification.rate}}</a></li>
+            </ul>
+          </li>  -->
+        <li *ngIf="isLoggedIn" class="nav-item active favorite-li">
+          <a class="nav-link" href="movies/favorite"><i class="fa fa-gratipay fa-2x align-middle"></i> Favorite</a>
+        </li>
+      </ul>
+    </div>
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <form class="form-inline my-2 my-lg-0" (ngSubmit)="searchMovie($event)">
+            <input class="form-control mr-sm-2" type="search" placeholder="Year / Movie / Cast" aria-label="Search" name="searchQuery" [(ngModel)]="searchQuery">
+          </form>
+        </li>
+        <li *ngIf="!isLoggedIn" class="nav-item active">
+          <a class="nav-link" href="login">Login</a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item active">
+          <a class="nav-link btn" role="button" (click)="logout($event)">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>

@@ -1,0 +1,14 @@
+.genre-container {
+    width: 400px;
+    height: auto;
+}
+.genere-item {
+    float:left;
+    width: 122px;
+}
+.is-active {
+    color:red;
+}
+.favorite-li {
+    margin-top: -2px;
+}

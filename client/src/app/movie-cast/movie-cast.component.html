@@ -1,0 +1,6 @@
+<div *ngIf="url" class="thumbnail p-sm-2">
+    <a [routerLink]="['/movies/byCast', cast.id, cast.name, 1]" class="thumbnail-link p-sm-2" >
+        <img [src]="url" class="rounded card-img-top" [alt]="cast.name"><br>
+        <span class="title">{{ cast.name }}</span>
+    </a>
+</div>
